@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-config" version="1.1.0">
+    <name>cordova config</name>
+    <description>
+        The config of cordova.
+    </description>
+    <author>HoldSkill Team</author>
+    <license>MIT</license>
+    <keywords>cordova,cordova config</keywords>
+    <repo>https://github.com/HoldSkill/cordova-config.git</repo>
+    <issue>https://github.com/HoldSkill/cordova-config/issues</issue>
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+    <js-module name="CordovaConfig" src="www/CordovaConfig.js">
+        <clobbers target="AudioPermission" />
+    </js-module>
+    <!-- android -->
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="CordovaConfig">
+                <param name="android-package" value="com.holdskill.CordovaConfig" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.RECORD_AUDIO" />
+        </config-file>
+        <source-file src="src/android/AudioPermission.java" target-dir="src/com/holdskill/AudioPermission" />
+    </platform>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="CordovaConfig">
+                <param name="ios-package" value="CordovaConfig" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/CordovaConfig.h" />
+        <source-file src="src/ios/CordovaConfig.m" />
+    </platform>
+</plugin>
